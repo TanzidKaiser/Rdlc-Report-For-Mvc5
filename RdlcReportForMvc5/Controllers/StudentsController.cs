@@ -23,23 +23,23 @@ namespace RdlcReportForMvc5.Controllers
         {
             return View(db.Students.ToList());
         }
-        public ActionResult Save(Student student)
+        public JsonResult Save(Student student)
         {
-            db.Students.Add(student);
-            db.SaveChanges();
-           // ExportTo(student);
-            return Json("Save",JsonRequestBehavior.AllowGet);
+            //db.Students.Add(student);
+            //db.SaveChanges();
+            //ExportTo(student);            
+            return Json("Save", JsonRequestBehavior.AllowGet);
         }
-        private ActionResult ExportTo(Student models)
+        public void ExportTo(Student student)
         {
             var model = new[] {
 
-                new { Name =models.Name,Department = models.Department},
-                new { Name =models.Name, Department = models.Department},
-                new { Name =models.Name, Department = models.Department},
+                new { Name =student.Name,Department = student.Department},
+                new { Name =student.Name, Department = student.Department},
+                new { Name =student.Name, Department = student.Department},
             }.ToList();
 
-            //model.ID = 1;
+           // model.ID = 1;
             ReportDataSource reportDataSource = new ReportDataSource();
             reportDataSource.Name = "DataSet";
             reportDataSource.Value = model;
@@ -60,70 +60,15 @@ namespace RdlcReportForMvc5.Controllers
             Response.Clear();
             Response.ContentType = mimeType;
             Response.AddHeader("content-disposition", "attachment;filename=file." + fileNameExtension);
-            //Response.BinaryWrite(bytes);
             //Response.Flush();
-            return File(bytes, fileNameExtension);
+            Response.BinaryWrite(bytes);
+            Response.Flush();
+           
+            //Response.Close();
+            //return File(bytes, fileNameExtension);
         }
-        //[HttpPost]
-        //public FileResult ExportTo(Student model)
-        //{
-        //    var a = db.Students.ToList();
-
-        //    LocalReport localReport = new LocalReport();
-        //    localReport.ReportPath = Server.MapPath("~/Report/Report.rdlc");
-        //    ReportDataSource reportDataSource = new ReportDataSource();
-        //    reportDataSource.Name = "DataSet";
-        //    reportDataSource.Value = a;
-        //    localReport.DataSources.Add(reportDataSource);
-
-        //    string reportType = "PDF";
-        //    string mimeType;
-        //    string encodeing;
-        //    //string fileNameExtension = (ReportType == "Excel") ? "xlsx" : (ReportType == "Word") ?"doc":"pdf";
-        //    string fileNameExtension = "pdf";
-        //    Warning[] warnings;
-        //    string[] streams;
-        //    byte[] renderBytes;
-
-        //    renderBytes = localReport.Render(reportType, "", out mimeType, out encodeing,
-        //        out fileNameExtension, out streams, out warnings);
-        //    Response.AddHeader("content-disposition", "attachment; filename=file." + fileNameExtension);
-
-        //    return File(renderBytes, fileNameExtension);
-        //}
-        //public ActionResult ExportToReport(string ReportType)
-        //{
-        //    var student = db.Students.ToList();
-        //    LocalReport localReport = new LocalReport();
-        //    localReport.ReportPath = Server.MapPath("~/Report/Report.rdlc");
-        //    ReportDataSource reportDataSource = new ReportDataSource();
-        //    reportDataSource.Name = "DataSet";
-        //    reportDataSource.Value = student;
-        //    localReport.DataSources.Add(reportDataSource);
-
-        //    string reportType = "PDF";
-        //    string mimeType;
-        //    string encodeing;
-        //    //string fileNameExtension = (ReportType == "Excel") ? "xlsx" : (ReportType == "Word") ?"doc":"pdf";
-        //    string fileNameExtension = "pdf";
-        //    Warning[] warnings;
-        //    string[] streams;
-        //    byte[] renderBytes;
-
-        //    renderBytes = localReport.Render(reportType, "", out mimeType, out encodeing,
-        //        out fileNameExtension, out streams, out warnings);
-        //    Response.AddHeader("content-disposition", "attachment; filename=file." + fileNameExtension);
-
-        //    Response.ClearHeaders();
-        //    Response.ClearContent();
-        //    Response.Buffer = true;
-        //    Response.Clear();          
-        //    Response.Flush();
-        //    Response.Close();
-        //    Response.End();
-
-        //    return File(renderBytes, fileNameExtension);
-        //}
+       
+        
         // GET: Students/Create
         public ActionResult Create()
         {
@@ -137,11 +82,7 @@ namespace RdlcReportForMvc5.Controllers
             if (ModelState.IsValid)
             {
                 db.Students.Add(student);
-                db.SaveChanges();
-
-                //int milliseconds = 5000;
-                //Thread.Sleep(milliseconds);
-                //string ReportType = "Word";
+                db.SaveChanges();                
                 //ExportTo(student);                
                 return RedirectToAction("Create");
             }
