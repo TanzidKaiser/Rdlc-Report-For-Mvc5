@@ -58,26 +58,52 @@
                 $("#SaveBtn").click(function () {
                     var student = {
 
-                        Name: $("#Name").val(),
-                        Department: $("#Department").val()
+                        Name: "Tanzid",
+                        Department: "Kaiser"
                        
                     };
-                    //var list = [];
-                    //list.push(student);
+                    var student1 = {
+
+                        Name: "Yasir",
+                        Department: "BBA"
+
+                    };
+                    var list = [];
+                    list.push(student);
+                    list.push(student1);
                     $.ajax({
                         type: 'post',
                         url: "/Students/Save",
                         dataType: 'json',
                         contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify(student),
+                        data: JSON.stringify(list),
                         contentType: 'application/json',
                         success: function (k) {
-                            alert(k);
-                            var url = '@Url.Action("ExportTo", "Students")';
-                            var a = $.param(student);
-                            window.location = url + '?' + a;
-                            Name = $("#Name").val('');
-                            Department = $("#Department").val('');
+                            //alert(k);
+                            $.ajax({
+                               
+                                url: "/Students/ExportTo",
+                                dataType: 'json',
+                                contentType: "application/json; charset=utf-8",
+                                data: JSON.stringify(list),
+                               
+                            });
+
+
+
+                            @*var url = '@Url.Action("ExportTo", "Students")' + '/?id=' + JSON.stringify(list);*@
+
+                            @*'@Url.Action("AddEquipment", "Home")' + '/?id=' + id*@
+                            //var a = $.param(list);
+                            //var a = JSON.stringify(list);
+                            //var SaleList = JSON.parse(a);
+                            //var a = { data: list };
+                            //var ab = decodeURIComponent($.param(a));
+                            //alert(ab);
+                            //window.location = url ;
+
+                            //Name = $("#Name").val('');
+                            //Department = $("#Department").val('');
                             //window.location.href = "/Students/Create";
 
                             @*var baseUrl = '@Url.Action("DownloadFileCSV", "Home")';

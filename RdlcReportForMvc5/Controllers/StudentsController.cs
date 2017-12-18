@@ -23,26 +23,26 @@ namespace RdlcReportForMvc5.Controllers
         {
             return View(db.Students.ToList());
         }
-        public JsonResult Save(Student student)
+        public JsonResult Save(List<Student> id)
         {
             //db.Students.Add(student);
             //db.SaveChanges();
             //ExportTo(student);            
             return Json("Save", JsonRequestBehavior.AllowGet);
         }
-        public void ExportTo(Student student)
+        public void ExportTo(List<Student> id)
         {
-            var model = new[] {
+            //var model = new[] {
 
-                new { Name =student.Name,Department = student.Department},
-                new { Name =student.Name, Department = student.Department},
-                new { Name =student.Name, Department = student.Department},
-            }.ToList();
+            //    new { Name =student.Name,Department = student.Department},
+            //    new { Name =student.Name, Department = student.Department},
+            //    new { Name =student.Name, Department = student.Department},
+            //}.ToList();
 
            // model.ID = 1;
             ReportDataSource reportDataSource = new ReportDataSource();
             reportDataSource.Name = "DataSet";
-            reportDataSource.Value = model;
+            //reportDataSource.Value = model;
 
             string mimeType = string.Empty;
             string encodeing = string.Empty;
