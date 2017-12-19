@@ -30,8 +30,22 @@ namespace RdlcReportForMvc5.Controllers
             //ExportTo(student);            
             return Json("Save", JsonRequestBehavior.AllowGet);
         }
-        public void ExportTo(List<Student> id)
+        //Student student
+        //List<Student> student
+        public void ExportTo(string id)
         {
+            List<Student> a = new List<Student>();
+
+            byte[] b = Convert.FromBase64String(id);           
+            System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
+            System.Text.Decoder utf8Decode = encoder.GetDecoder();
+
+            int charCount = utf8Decode.GetCharCount(b, 0, b.Length);
+
+            char[] decodedChar = new char[charCount];
+            utf8Decode.GetChars(b, 0, b.Length, decodedChar, 0);
+            string result = new String(decodedChar);
+            var a = 
             //var model = new[] {
 
             //    new { Name =student.Name,Department = student.Department},
@@ -39,10 +53,10 @@ namespace RdlcReportForMvc5.Controllers
             //    new { Name =student.Name, Department = student.Department},
             //}.ToList();
 
-           // model.ID = 1;
+            // model.ID = 1;
             ReportDataSource reportDataSource = new ReportDataSource();
             reportDataSource.Name = "DataSet";
-            //reportDataSource.Value = model;
+            //reportDataSource.Value = student;
 
             string mimeType = string.Empty;
             string encodeing = string.Empty;

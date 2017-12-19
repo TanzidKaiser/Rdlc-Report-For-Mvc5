@@ -49,72 +49,73 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
-            
+
         })
     </script>
     <script>
-            $(document).ready(function () {
+        $(document).ready(function () {
 
-                $("#SaveBtn").click(function () {
-                    var student = {
+            $("#SaveBtn").click(function () {
+                var student = {
 
-                        Name: "Tanzid",
-                        Department: "Kaiser"
-                       
-                    };
-                    var student1 = {
+                    Name: "Tanzid",
+                    Department: "Kaiser"
 
-                        Name: "Yasir",
-                        Department: "BBA"
+                };
+                var student1 = {
 
-                    };
-                    var list = [];
-                    list.push(student);
-                    list.push(student1);
-                    $.ajax({
-                        type: 'post',
-                        url: "/Students/Save",
-                        dataType: 'json',
-                        contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify(list),
-                        contentType: 'application/json',
-                        success: function (k) {
-                            //alert(k);
-                            $.ajax({
-                               
-                                url: "/Students/ExportTo",
-                                dataType: 'json',
-                                contentType: "application/json; charset=utf-8",
-                                data: JSON.stringify(list),
-                               
-                            });
+                    Name: "Yasir",
+                    Department: "BBA"
+
+                };
+                var list = [];
+                list.push(student);
+                list.push(student1);
+                $.ajax({
+                    type: 'post',
+                    url: "/Students/Save",
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(list),
+                    contentType: 'application/json',
+                    success: function (k) {
+                        //alert(k);
+                        //var b  = jQuery.parseJSON($.param(list));
+                        //alert(b);
+                        //var a = $.param(student);
+                        var a = JSON.stringify(list);
+                        var b = btoa(a);
+                        
+                        var url = '@Url.Action("ExportTo", "Students")' + '/?id=' + b;
+                        //var encode = b;
+                        //var c = JSON.parse(b);
+                        //var a = jQuery.param(c);
+
+                        //alert(b);
+                        window.location = url ;
+
+                        @*'@Url.Action("AddEquipment", "Home")' + '/?id=' + id*@
+                        //var a = $.param(list);
+                        //var a = JSON.stringify(list);
+                        //var SaleList = JSON.parse(a);
+                        //var a = { data: list };
+                        //var ab = decodeURIComponent($.param(a));
+                        //alert(ab);
 
 
+                        //Name = $("#Name").val('');
+                        //Department = $("#Department").val('');
+                        //window.location.href = "/Students/Create";
 
-                            @*var url = '@Url.Action("ExportTo", "Students")' + '/?id=' + JSON.stringify(list);*@
-
-                            @*'@Url.Action("AddEquipment", "Home")' + '/?id=' + id*@
-                            //var a = $.param(list);
-                            //var a = JSON.stringify(list);
-                            //var SaleList = JSON.parse(a);
-                            //var a = { data: list };
-                            //var ab = decodeURIComponent($.param(a));
-                            //alert(ab);
-                            //window.location = url ;
-
-                            //Name = $("#Name").val('');
-                            //Department = $("#Department").val('');
-                            //window.location.href = "/Students/Create";
-
-                            @*var baseUrl = '@Url.Action("DownloadFileCSV", "Home")';
+                        @*var baseUrl = '@Url.Action("DownloadFileCSV", "Home")';
                             var queryString = $.param(data);
                             window.location = baseUrl + '?' + queryString;*@
-                        },
-                    })
-                });
-            })
-                                    
-        </script>
+                    },
+                })
+            });
+        })
+
+    </script>
 
 
 }
