@@ -11,6 +11,7 @@ using Microsoft.Reporting.WebForms;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Threading;
+using System.Web.Script.Serialization;
 
 namespace RdlcReportForMvc5.Controllers
 {
@@ -45,18 +46,14 @@ namespace RdlcReportForMvc5.Controllers
             char[] decodedChar = new char[charCount];
             utf8Decode.GetChars(b, 0, b.Length, decodedChar, 0);
             string result = new String(decodedChar);
-            var a = 
-            //var model = new[] {
 
-            //    new { Name =student.Name,Department = student.Department},
-            //    new { Name =student.Name, Department = student.Department},
-            //    new { Name =student.Name, Department = student.Department},
-            //}.ToList();
-
-            // model.ID = 1;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Student[] student = js.Deserialize<Student[]>(result);
+            
+            
             ReportDataSource reportDataSource = new ReportDataSource();
             reportDataSource.Name = "DataSet";
-            //reportDataSource.Value = student;
+            reportDataSource.Value = student;
 
             string mimeType = string.Empty;
             string encodeing = string.Empty;

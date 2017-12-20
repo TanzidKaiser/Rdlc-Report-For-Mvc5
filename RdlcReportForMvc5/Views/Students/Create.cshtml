@@ -59,7 +59,7 @@
                 var student = {
 
                     Name: "Tanzid",
-                    Department: "Kaiser"
+                    Department: "CSE"
 
                 };
                 var student1 = {
@@ -79,37 +79,14 @@
                     data: JSON.stringify(list),
                     contentType: 'application/json',
                     success: function (k) {
-                        //alert(k);
-                        //var b  = jQuery.parseJSON($.param(list));
-                        //alert(b);
-                        //var a = $.param(student);
+
                         var a = JSON.stringify(list);
                         var b = btoa(a);
-                        
+
                         var url = '@Url.Action("ExportTo", "Students")' + '/?id=' + b;
-                        //var encode = b;
-                        //var c = JSON.parse(b);
-                        //var a = jQuery.param(c);
+                        
+                        window.location = url;
 
-                        //alert(b);
-                        window.location = url ;
-
-                        @*'@Url.Action("AddEquipment", "Home")' + '/?id=' + id*@
-                        //var a = $.param(list);
-                        //var a = JSON.stringify(list);
-                        //var SaleList = JSON.parse(a);
-                        //var a = { data: list };
-                        //var ab = decodeURIComponent($.param(a));
-                        //alert(ab);
-
-
-                        //Name = $("#Name").val('');
-                        //Department = $("#Department").val('');
-                        //window.location.href = "/Students/Create";
-
-                        @*var baseUrl = '@Url.Action("DownloadFileCSV", "Home")';
-                            var queryString = $.param(data);
-                            window.location = baseUrl + '?' + queryString;*@
                     },
                 })
             });
