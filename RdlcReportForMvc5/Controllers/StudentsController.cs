@@ -19,10 +19,11 @@ namespace RdlcReportForMvc5.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
+      
         // GET: Students
         public ActionResult Index()
         {
-            return View(db.Students.ToList());
+            return View();
         }
         public JsonResult Save(List<Student> id)
         {
