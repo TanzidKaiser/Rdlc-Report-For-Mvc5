@@ -157,3 +157,4 @@ C:\Users\User\Documents\Visual Studio 2015\Projects\Git\Rdlc-Report-For-Mvc5\Rdl
 C:\Users\User\Documents\Visual Studio 2015\Projects\Git\Rdlc-Report-For-Mvc5\RdlcReportForMvc5\bin\ru\Microsoft.SqlServer.Types.resources.dll
 C:\Users\User\Documents\Visual Studio 2015\Projects\Git\Rdlc-Report-For-Mvc5\RdlcReportForMvc5\bin\zh-Hans\Microsoft.SqlServer.Types.resources.dll
 C:\Users\User\Documents\Visual Studio 2015\Projects\Git\Rdlc-Report-For-Mvc5\RdlcReportForMvc5\bin\zh-Hant\Microsoft.SqlServer.Types.resources.dll
+C:\Users\User\Documents\Visual Studio 2015\Projects\Git\Rdlc-Report-For-Mvc5\RdlcReportForMvc5\obj\Debug\RdlcReportForMvc5.csprojResolveAssemblyReference.cache

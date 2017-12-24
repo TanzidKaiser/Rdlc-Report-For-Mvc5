@@ -10,8 +10,12 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <div style="color: #FF0000">
+       
+        Department: <asp:TextBox ID="DeptTextBox" runat="server" Width="150px"></asp:TextBox> 
+        &nbsp;
+        <asp:Button ID="SrcBtn" runat="server" BorderColor="#009900" OnClick="SrcBtn_Click" Text="Button" />
+&nbsp;<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <rsweb:reportviewer ID="ReportViewer1" runat="server" Width="600">
         </rsweb:reportviewer>
     
